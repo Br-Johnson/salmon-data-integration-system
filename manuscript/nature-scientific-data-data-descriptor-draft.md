@@ -1,368 +1,399 @@
-# Nature Scientific Data submission draft
+# Scientific Data article draft
 
-**Working status:** Draft v0.1 (foundation draft for iterative refinement)
+**Working status:** Draft v0.2 (refactored to the **Scientific Data “Article”** format)
 
-**Target journal/article type:** Scientific Data — Data Descriptor
+**Target journal/article type:** Scientific Data — **Article** (data standards / ontologies / workflows / sharing infrastructure)
 
-**Project codename:** Salmon Data Integration System (SDIS)
-
----
-
-## 0) Candidate titles (Scientific Data constraints aware)
-
-> Notes from current Scientific Data guidance: title should be descriptive, no colon, avoid marketing language, and be <=110 characters.
-
-1. **A semantic data integration framework for interoperable salmon monitoring datasets**
-2. **An ontology aligned data package system for reusable salmon monitoring data**
-3. **Standardized salmon data exchange using ontologies data packages and validation tooling**
+**Project name:** Salmon Data Integration System (SDIS)
 
 ---
 
-## 1) Abstract draft (<170 words target)
+## 0) Why this refactor
 
-Reliable reuse of salmon monitoring data is constrained by heterogeneous schema design, inconsistent variable definitions, and weak interoperability between agencies and projects. We present the Salmon Data Integration System, a reproducible framework that combines two ontology layers, a formal Salmon Data Package specification, and validation tooling to standardize data packaging and exchange workflows. Shared domain semantics are represented in a community salmon domain ontology, while operational and policy specific semantics are represented in a DFO salmon ontology. Dataset level exchange is implemented through the Salmon Data Package specification, and package quality control is operationalized with metasalmon in R. The workflow also includes an AI assisted standardization step that proposes field mappings and ontology term candidates for expert review prior to final packaging. Together, these components provide a practical path from raw source tables to semantically annotated, machine actionable, and reviewable data packages. This descriptor documents system architecture, implementation workflow, expected data artifacts, validation procedures, and usage patterns to support transparent reuse across salmon science and management contexts.
+This manuscript was originally scaffolded as a Data Descriptor. It has been refactored toward the Scientific Data **Article** format, which is appropriate for papers focused on:
 
-Word count estimate: ~162
+- data standards,
+- ontologies,
+- workflow/infrastructure design,
+- mechanics of data sharing,
 
----
-
-## 2) Background & Summary
-
-### 2.1 Motivation
-
-Salmon science programs routinely integrate data from multiple sources, including stock assessment, spawner surveys, habitat observations, environmental covariates, and management reporting systems. Across these streams, interoperability is often reduced by:
-
-- locally defined column naming and inconsistent metadata depth
-- divergent entity definitions (for example stock, population, life stage, run timing)
-- mixed granularity of space and time fields
-- weakly documented transformations between source and analysis-ready datasets
-
-The consequence is high integration overhead, repeated one-off data cleaning, and reduced reproducibility.
-
-### 2.2 Reuse objective
-
-The objective of SDIS is to make salmon datasets easier to discover, interpret, validate, and reuse by coupling:
-
-- **semantic consistency** (ontology alignment)
-- **structural consistency** (data package schema)
-- **operational consistency** (standardized validation and transformation workflow)
-
-### 2.3 System framing
-
-SDIS is a workflow and standards stack, not a single monolithic software package. It integrates existing and complementary components:
-
-- DFO salmon ontology: <https://github.com/dfo-pacific-science/dfo-salmon-ontology>
-- Salmon domain ontology: <https://github.com/salmon-data-mobilization/salmon-domain-ontology>
-- Salmon ontology hub/docs: <https://github.com/salmon-data-mobilization/salmon-ontology-hub>
-- Salmon Data Package (SDP) specification: <https://github.com/dfo-pacific-science/smn-data-pkg>
-- metasalmon R package: <https://github.com/dfo-pacific-science/metasalmon>
-- Salmon Data Standardizer GPT app: <https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer>
-
-### 2.4 Intended reuse value
-
-This architecture is intended to support:
-
-- cross-program data harmonization
-- reproducible package generation and validation
-- improved interoperability for downstream analysis pipelines and decision support tools
-- clearer lineage between source fields, mapped semantic terms, and released package artifacts
+rather than describing one deposited dataset as the primary scientific object.
 
 ---
 
-## 3) Methods
+## 1) Candidate titles (Article style)
 
-### 3.1 Overall workflow
+> Kept within Scientific Data title constraints in mind (descriptive wording, avoid marketing language).
 
-SDIS follows a five-stage process:
-
-1. ontology alignment
-2. AI-assisted standardization (human reviewed)
-3. SDP-conformant package construction
-4. package validation and transformation
-5. downstream integration and reuse
-
-### 3.2 Semantic layer design
-
-#### 3.2.1 Shared domain layer
-
-The shared domain ontology provides reusable, domain-general concepts relevant across salmon contexts. This layer anchors common vocabulary and relations intended for reuse across organizations and implementations.
-
-#### 3.2.2 Operational layer
-
-The DFO salmon ontology encodes policy and operational specifics required in DFO-oriented workflows. This layer enables context-specific representation without forcing duplication of shared concepts.
-
-#### 3.2.3 Layer interaction
-
-The implementation assumption for this draft is:
-
-- shared reusable semantics are maintained in the salmon domain ontology
-- DFO-specific semantics are maintained in the DFO ontology
-- mappings between package metadata/fields and ontology terms are explicit and reviewable
-
-### 3.3 AI-assisted standardization step
-
-The Salmon Data Standardizer GPT app is used as a front-end accelerator for mapping preparation. The role of this step is constrained to assistance, not authority.
-
-**Operational pattern:**
-
-- user provides source table structure, field definitions, units, provenance notes, and known constraints
-- the assistant proposes:
-  - candidate SDP field mappings
-  - candidate ontology term alignments
-  - candidate normalization actions
-- domain experts review all proposals before package finalization
-
-**Governance rule:**
-
-- no AI-proposed mapping is treated as final without expert review and downstream validation
-
-### 3.4 Data package construction
-
-Data are expressed as Salmon Data Packages using the specification in `smn-data-pkg`. Construction steps include:
-
-1. define package-level metadata
-2. prepare required data tables/files in specified formats
-3. encode variable-level definitions and units
-4. apply approved semantic mappings
-5. bundle package files in a versioned, reproducible layout
-
-### 3.5 Validation and transformation
-
-`metasalmon` is used as the primary R-based operational tool for package QA/QC and transformation support.
-
-Validation checks should cover at minimum:
-
-- required file presence and schema conformance
-- variable naming and metadata completeness
-- controlled vocabulary / ontology mapping integrity checks
-- unit consistency and parseability checks
-- machine-readability of package-level metadata
-
-### 3.6 Release process and versioning
-
-For journal submission and durable reuse, each package release should include:
-
-- immutable release identifier (version tag + date)
-- changelog with semantic and structural deltas
-- validation report for that release
-- repository or archive URL and persistent identifier (DOI target)
-
-### 3.7 Reproducibility posture
-
-The reproducibility contract for SDIS should include:
-
-- version-pinned ontology references
-- version-pinned package specification reference
-- version-pinned tooling stack (R and package versions)
-- scripted validation commands
-- release artifacts archived in a stable repository
+1. **A semantic workflow architecture for interoperable salmon data sharing**
+2. **An ontology aligned data packaging system for salmon monitoring workflows**
+3. **A standards based integration framework for reusable salmon data products**
 
 ---
 
-## 4) Data Records
+## 2) Abstract
 
-> This section must be finalized with concrete release artifact names, checksums, and persistent identifiers.
+Interoperable salmon data sharing is constrained by heterogeneous schemas, inconsistent field semantics, and uneven packaging practices across programs. We describe the Salmon Data Integration System, a standards based workflow architecture that links ontology governance, structured data packaging, and operational validation into one reproducible process. The system combines a shared salmon domain ontology, a DFO specific ontology layer, the Salmon Data Package specification, and the metasalmon R toolkit for package checks and transformation support. An AI assisted mapping interface is included as a human supervised acceleration step for field harmonization and ontology term suggestion. This article documents design objectives, component responsibilities, workflow stages, quality controls, and implementation governance. The contribution is a practical framework for moving from raw source tables to semantically aligned, machine actionable data products suitable for exchange, analysis, and long term reuse. The architecture is designed to support transparent curation decisions, versioned releases, and reproducible validation across salmon science and management contexts.
 
-### 4.1 Record classes produced by SDIS
+---
 
-| Record class | Description | Canonical location (draft) |
+## 3) Introduction
+
+### 3.1 Problem context
+
+Salmon data integration often requires repeated manual interpretation of local schemas, ad hoc metadata assumptions, and project-specific transformation scripts that are difficult to audit or transfer. Even when data are technically available, reuse can remain low because meaning is not represented consistently across systems.
+
+### 3.2 Scope of this article
+
+This paper describes a system-level approach for improving interoperability and reuse through coordinated standards and operational workflow design. The central object is **the integration system itself** (not one specific dataset), making the Scientific Data **Article** format appropriate.
+
+### 3.3 Practical objective
+
+The objective is to reduce friction between data creation and data reuse by making semantics, package structure, and validation steps explicit and reproducible.
+
+---
+
+## 4) System design principles
+
+SDIS is designed around six principles:
+
+1. **Semantic clarity first**: concepts and relationships are represented explicitly via ontologies.
+2. **Structure second**: data exchange follows a formal package specification.
+3. **Validation as a release gate**: package checks are required before downstream use.
+4. **Human accountability**: automated suggestions support, but do not replace, expert decisions.
+5. **Traceable transformations**: mapping and normalization choices should be inspectable.
+6. **Versioned reproducibility**: standards and outputs are referenced with explicit versions.
+
+---
+
+## 5) Architecture of the Salmon Data Integration System
+
+### 5.1 Component overview
+
+| Layer | Primary function | Main implementation artifacts |
 |---|---|---|
-| Ontology artifacts | OWL/SKOS or related semantic resources used for mapping | `dfo-salmon-ontology`, `salmon-domain-ontology` |
-| Mapping artifacts | Table-level or field-level mapping documentation linking source fields to ontology terms | `[TO_BE_FINALIZED]` |
-| Salmon Data Packages | Packaged datasets conforming to SDP spec | `[TO_BE_FINALIZED_REPOSITORY_AND_PATHS]` |
-| Validation outputs | Validation logs/reports from package checks | `[TO_BE_FINALIZED]` |
-| Transformation scripts | Optional scripts/notebooks used to produce released package artifacts | `[TO_BE_FINALIZED]` |
+| Semantic layer (shared) | Domain-wide reusable concepts and relationships | `salmon-domain-ontology` |
+| Semantic layer (operational) | Organization-specific policy and operational context | `dfo-salmon-ontology` |
+| Packaging layer | Standardized data exchange structure | `smn-data-pkg` |
+| Validation/tooling layer | QA/QC and transformation support | `metasalmon` |
+| Assisted mapping interface | Draft harmonization and term suggestion support | Salmon Data Standardizer GPT |
 
-### 4.2 Required final Data Records details for submission
+### 5.2 Shared semantic layer
 
-Before submission, this section should include:
+The shared ontology layer provides reusable, domain-oriented terms intended for cross-context interoperability. It is intended to reduce duplicate modeling effort and stabilize core conceptual meaning.
 
-- exact file inventory (filename, type, size)
-- folder structure of deposited datasets
-- data dictionary coverage for all non-obvious fields
-- package-level metadata examples
-- persistent identifiers for all deposited datasets
+Repository:
+- <https://github.com/salmon-data-mobilization/salmon-domain-ontology>
 
----
+Supporting hub/docs:
+- <https://github.com/salmon-data-mobilization/salmon-ontology-hub>
 
-## 5) Technical Validation
+### 5.3 Operational semantic layer
 
-### 5.1 Validation philosophy
+The DFO-specific layer captures policy and operational semantics required for specific governance and implementation contexts. This allows operational precision without forcing all shared domain concepts into a single context-bound vocabulary.
 
-Validation is designed to test both **structural integrity** (does it conform to package rules) and **semantic integrity** (do field meanings and term mappings remain coherent).
+Repository:
+- <https://github.com/dfo-pacific-science/dfo-salmon-ontology>
 
-### 5.2 Validation dimensions
+### 5.4 Data packaging layer
 
-1. **Schema conformance**
-   - required files and required fields present
-   - field types and constraints are respected
+The Salmon Data Package (SDP) specification defines packaging structure, metadata expectations, and file-level conventions for exchangeable dataset products.
 
-2. **Metadata completeness**
-   - package metadata fields populated to minimum required level
-   - dataset provenance and version information present
+Repository:
+- <https://github.com/dfo-pacific-science/smn-data-pkg>
 
-3. **Semantic mapping checks**
-   - mapped ontology identifiers resolve to expected terms
-   - mapping cardinalities are coherent (for example one-to-many only when justified)
+### 5.5 Validation and transformation layer
 
-4. **Unit and value checks**
-   - values parse according to declared types
-   - units are present and normalized where applicable
+`metasalmon` provides practical R-based support for package inspection, validation workflows, and transformation tasks aligned to packaging rules.
 
-5. **Reproducibility checks**
-   - package can be validated from a clean environment with documented commands
+Repository:
+- <https://github.com/dfo-pacific-science/metasalmon>
 
-### 5.3 Example validation workflow
+### 5.6 AI-assisted harmonization interface
 
-1. run package-level validation through `metasalmon`
-2. run custom integrity checks for project-specific constraints
-3. review generated reports for blocking and non-blocking issues
-4. remediate and re-run until release criteria pass
-5. archive validation evidence alongside release artifacts
+The Salmon Data Standardizer GPT app provides a user-facing acceleration layer for drafting mappings between source fields, package fields, and ontology candidates.
 
-### 5.4 Release acceptance criteria (draft)
+App:
+- <https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer>
 
-A package is release-ready when:
-
-- no blocking schema errors remain
-- no unresolved required metadata fields remain
-- semantic mapping review is signed off by domain curator(s)
-- validation report is attached to the release
+Its role is advisory and preparatory; final decisions remain with human curators and formal validation tooling.
 
 ---
 
-## 6) Usage Notes
+## 6) Workflow implementation
 
-### 6.1 Recommended implementation order
+### 6.1 Stage 1 — Source profiling and scoping
 
-1. model concepts and relationships
-2. standardize source schema and term mappings
-3. build SDP package
-4. validate package
-5. integrate into analytics/apps
+Inputs:
+- source table structures,
+- field definitions,
+- unit descriptions,
+- known constraints/provenance notes.
 
-### 6.2 Practical usage patterns
+Output:
+- initial dataset profile and harmonization scope.
 
-- **Program-level harmonization:** convert multiple local datasets into consistent SDP outputs for cross-program analysis
-- **Data handoff:** package data releases for transfer between organizations with explicit semantic context
-- **App integration:** feed validated, semantically labeled packages into downstream dashboards, models, or decision services
+### 6.2 Stage 2 — Semantic alignment
 
-### 6.3 Human-in-the-loop recommendation
+Tasks:
+- identify entities, properties, and relationship needs,
+- align shared terms to the domain ontology,
+- align context-specific terms to the DFO ontology,
+- record unresolved concept gaps for curation.
 
-Use AI-assisted standardization to reduce manual mapping effort, but preserve expert review checkpoints before release. This balances speed and semantic accuracy.
+Output:
+- explicit semantic mapping draft.
 
-### 6.4 Known limitations (to be completed)
+### 6.3 Stage 3 — AI-assisted mapping draft (human reviewed)
 
-- `[LIMITATION_1_PLACEHOLDER]`
-- `[LIMITATION_2_PLACEHOLDER]`
-- `[LIMITATION_3_PLACEHOLDER]`
+Tasks:
+- use the GPT interface to propose field-level standardization and ontology candidates,
+- compare AI suggestions against documented definitions,
+- flag ambiguities and conflicts.
+
+Control:
+- no mapping proceeds to release without expert review.
+
+Output:
+- reviewed mapping candidate set.
+
+### 6.4 Stage 4 — SDP package construction
+
+Tasks:
+- instantiate package metadata,
+- populate required data files/tables,
+- encode field-level metadata and units,
+- apply reviewed semantic mapping rules.
+
+Output:
+- versioned SDP candidate package.
+
+### 6.5 Stage 5 — Validation and remediation loop
+
+Tasks:
+- run package checks,
+- inspect schema/metadata/semantic issues,
+- remediate failing elements,
+- re-run until release gate criteria pass.
+
+Output:
+- validated package + validation evidence.
+
+### 6.6 Stage 6 — Release and integration
+
+Tasks:
+- publish versioned package artifacts,
+- archive mapping/validation evidence,
+- provide machine-usable links for downstream systems.
+
+Output:
+- reusable, traceable, exchange-ready data product.
 
 ---
 
-## 7) Data Availability (submission-draft placeholders)
+## 7) Methods and technical soundness controls
 
-Data supporting this descriptor will be deposited in `[TARGET_REPOSITORY]` with persistent identifiers assigned at release.
+### 7.1 Structural controls
 
-- Dataset collection DOI: `[TO_BE_ASSIGNED]`
-- Versioned package archive DOI(s): `[TO_BE_ASSIGNED]`
-- Access conditions/licensing: `[TO_BE_DEFINED]`
+- required package file presence checks,
+- required metadata field completion checks,
+- field type/format compliance checks.
+
+### 7.2 Semantic controls
+
+- ontology identifier resolution checks,
+- mapping coherence checks (cardinality and context),
+- review sign-off on ambiguous term assignments.
+
+### 7.3 Operational controls
+
+- reproducible command workflows,
+- environment/version capture,
+- release-level change logging.
+
+### 7.4 Human-in-the-loop checkpoints
+
+The system enforces human checkpointing where semantic judgment is required. This is specifically important for:
+
+- concept disambiguation,
+- policy-sensitive classifications,
+- context-dependent mapping decisions.
+
+### 7.5 Auditability posture
+
+Each release should preserve the connection between:
+
+- source input assumptions,
+- mapping decisions,
+- package outputs,
+- validation outcomes.
+
+This supports later review, correction, and reuse confidence.
 
 ---
 
-## 8) Code Availability (submission-draft placeholders)
+## 8) System outputs and reuse pathways
 
-Core standards and tooling repositories:
+### 8.1 Primary outputs
+
+1. ontology-aligned mapping artifacts,
+2. SDP-conformant data packages,
+3. validation evidence,
+4. versioned release metadata.
+
+### 8.2 Reuse pathways
+
+- **Cross-program harmonization:** reducing repeated one-off integration work.
+- **Inter-agency exchange:** improving interpretability across organizations.
+- **Analytical reproducibility:** enabling clearer lineage for downstream models and reports.
+- **Application integration:** providing cleaner inputs for decision-support software.
+
+### 8.3 Intended users
+
+- data curators,
+- fisheries science analysts,
+- standards developers,
+- system integrators,
+- policy/operations teams needing transparent data handoff.
+
+---
+
+## 9) Limitations and boundary conditions
+
+### 9.1 Dependence on curation capacity
+
+Semantic quality remains dependent on expert review bandwidth and governance discipline.
+
+### 9.2 Ontology evolution burden
+
+As domain understanding evolves, mappings and packages require maintenance to remain aligned with current terms.
+
+### 9.3 Upstream data quality constraints
+
+The system can standardize structure and semantics, but cannot fully compensate for severe source-data quality issues.
+
+### 9.4 AI assistance limitations
+
+AI-generated suggestions can improve speed but may introduce plausible-yet-incorrect mappings if not reviewed carefully.
+
+---
+
+## 10) Discussion
+
+### 10.1 Contribution type
+
+The contribution of SDIS is infrastructural and methodological: a composable integration architecture for standards-driven salmon data sharing and reuse.
+
+### 10.2 Why Article format fits
+
+Unlike a Data Descriptor centered on one deposited dataset, this work describes:
+
+- multi-component standards architecture,
+- integration mechanics,
+- governance and validation workflow,
+- implementation guidance for reuse.
+
+These are aligned with Scientific Data’s Article scope for standards, ontologies, workflows, and data-sharing infrastructure.
+
+### 10.3 Near-term maturation priorities
+
+1. formalize mapping artifact schema,
+2. publish reproducible validation command set,
+3. assemble worked case studies with before/after interoperability outcomes,
+4. assign persistent identifiers for key released outputs.
+
+---
+
+## 11) Data Availability
+
+This Article describes standards, ontologies, tooling, and workflow infrastructure for salmon data integration.
+
+Public resources referenced in this work:
 
 - DFO salmon ontology: <https://github.com/dfo-pacific-science/dfo-salmon-ontology>
 - Salmon domain ontology: <https://github.com/salmon-data-mobilization/salmon-domain-ontology>
 - Salmon ontology hub/docs: <https://github.com/salmon-data-mobilization/salmon-ontology-hub>
 - Salmon Data Package specification: <https://github.com/dfo-pacific-science/smn-data-pkg>
-- metasalmon R package: <https://github.com/dfo-pacific-science/metasalmon>
-- SDIS integration site/repo: <https://github.com/Br-Johnson/salmon-data-integration-system>
+- SDIS integration repository: <https://github.com/Br-Johnson/salmon-data-integration-system>
 
-AI-assisted mapping interface:
-
-- Salmon Data Standardizer GPT app: <https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer>
-
-`[ADD exact software versions, commit hashes, environment lock details prior to submission.]`
+`[If a specific demonstration dataset or release archive is added for submission, include repository URL, accession/DOI, file-level description, and version here.]`
 
 ---
 
-## 9) References seed list
+## 12) Code Availability
 
-> Add formal references and dataset citations in journal format during citation pass.
+Software and implementation resources:
+
+- metasalmon R package: <https://github.com/dfo-pacific-science/metasalmon>
+- Salmon Data Standardizer GPT app interface: <https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer>
+
+`[Add exact version pins / commit hashes / runtime environment details before submission.]`
+
+---
+
+## 13) References seed list (to formalize)
 
 1. DFO Pacific Science. dfo-salmon-ontology. GitHub repository.
 2. Salmon Data Mobilization. salmon-domain-ontology. GitHub repository.
 3. Salmon Data Mobilization. salmon-ontology-hub. GitHub repository.
 4. DFO Pacific Science. smn-data-pkg. GitHub repository.
 5. DFO Pacific Science. metasalmon. GitHub repository.
+6. Wilkinson, M. D. et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci Data 3, 160018 (2016).
 
 ---
 
-## 10) Figures and tables plan for full submission
+## 14) Figure and table plan (Article-oriented)
 
 ### Figure plan
 
-- **Figure 1:** SDIS architecture overview (semantic layer + package layer + validation layer)
-- **Figure 2:** End-to-end data standardization workflow from source table to released SDP
-- **Figure 3:** Validation pipeline and decision gates
-- **Figure 4:** Example mapping traceability from raw fields to ontology-linked package fields
+- **Figure 1:** SDIS architecture and component boundaries.
+- **Figure 2:** End-to-end workflow from source schema to validated package release.
+- **Figure 3:** Governance and quality gate checkpoints.
+- **Figure 4:** Example mapping traceability chain (source field → ontology term → package field).
 
 ### Table plan
 
-- **Table 1:** Comparison of SDIS components and responsibilities
-- **Table 2:** Required SDP metadata fields and semantic linkage points
-- **Table 3:** Validation checks, methods, and pass/fail criteria
-- **Table 4:** Released dataset/package inventory for this descriptor
+- **Table 1:** Component responsibilities and interfaces.
+- **Table 2:** Workflow stage inputs, outputs, and decision gates.
+- **Table 3:** Validation controls (structural, semantic, operational).
+- **Table 4:** Reuse pathways and target user groups.
 
 ---
 
-## 11) Scientific Data compliance checklist draft
+## 15) Scientific Data Article readiness checklist
 
-### Article structure
+### Format alignment
 
-- [x] Title candidates drafted (constraint-aware)
-- [x] Abstract drafted (~170 words target)
-- [x] Background & Summary drafted
-- [x] Methods drafted
-- [x] Data Records scaffold drafted
-- [x] Technical Validation drafted
-- [x] Usage Notes drafted
-- [ ] Data Availability finalized with DOI(s)
-- [ ] Code Availability finalized with versions
-- [ ] References converted to formal citation style
+- [x] Refactored to Article framing
+- [x] Introduction-focused structure in place
+- [x] System architecture described
+- [x] Workflow and methods described
+- [x] Limitations section included
+- [x] Data Availability section included
+- [x] Code Availability section included
+- [ ] Final title selection
+- [ ] Abstract final pass for journal wording
 
-### Data and repository readiness
+### Evidence and reproducibility
 
-- [ ] Final data repository selected and confirmed against journal policy
-- [ ] Public or review-accessible data package release prepared
-- [ ] Machine-readable file manifest completed
-- [ ] Data dictionary completed
-- [ ] Persistent identifiers minted
+- [ ] Add concrete implementation case study details
+- [ ] Add explicit version pins and environment details
+- [ ] Add release artifacts and persistent identifiers where applicable
+- [ ] Convert seed references to journal-style final references
 
-### Validation and reproducibility readiness
+### Submission metadata
 
-- [ ] Validation scripts documented and repeatable from clean environment
-- [ ] Release acceptance criteria formalized and executed
-- [ ] Final validation report archived with release
-
----
-
-## 12) Immediate next writing steps
-
-1. Replace placeholders with concrete dataset artifacts and release identifiers.
-2. Add formal methods detail for:
-   - input dataset provenance,
-   - mapping QA process,
-   - exact validation command set.
-3. Draft dataset inventory table with exact filenames and field-level dictionary references.
-4. Add reproducibility environment details (R version, package lockfile/session info, runtime assumptions).
-5. Build formal reference list and data citations in Scientific Data-compatible style.
-6. Finalize title/abstract against strict character and wording constraints.
+- [ ] Author Contributions finalized
+- [ ] Competing Interests statement finalized
+- [ ] Funding statement finalized
+- [ ] Acknowledgements finalized (if needed)
 
 ---
 
-## 13) Editorial note
+## 16) Next revision steps
 
-This draft is intentionally comprehensive and submission-oriented, but it is **not yet submission-ready** until concrete deposited datasets, formal data citations, and reproducibility metadata are completed.
+1. Insert one concrete worked example with full traceability (source schema → mapping decisions → package output).
+2. Add minimal quantitative process metrics (for example mapping throughput or validation failure classes) if available.
+3. Tighten the abstract and introduction language against final title choice.
+4. Convert references to Scientific Data/Nature style and add DOIs where available.
+5. Prepare figure drafts to match the architecture and workflow narrative.
