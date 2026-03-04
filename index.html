@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salmon Data Integration System</title>
+    <style>
+      :root {
+        --bg: #000000;
+        --fg: #f5f5f5;
+        --muted: #b9b9b9;
+        --panel: #0f0f0f;
+        --border: #2a2a2a;
+        --accent: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px 60px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        margin-top: 40px;
+        font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 1.05rem;
+        margin-top: 0;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 20px;
+        margin-top: 14px;
+      }
+
+      a {
+        color: var(--accent);
+        text-underline-offset: 3px;
+      }
+
+      a:hover {
+        opacity: 0.85;
+      }
+
+      ul,
+      ol {
+        padding-left: 1.1rem;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .footer {
+        margin-top: 48px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .badge {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 2px 10px;
+        color: var(--muted);
+        font-size: 0.8rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <span class="badge">Black + White Theme</span>
+      <h1>Salmon Data Integration System</h1>
+      <p class="subtitle">
+        A practical workflow that combines ontology standards, data packaging, and tooling for interoperable salmon datasets.
+      </p>
+
+      <h2>Core repositories and tools</h2>
+      <div class="panel">
+        <ul>
+          <li><strong>DFO salmon ontology</strong>: <a href="https://github.com/dfo-pacific-science/dfo-salmon-ontology" target="_blank" rel="noopener noreferrer">github.com/dfo-pacific-science/dfo-salmon-ontology</a></li>
+          <li><strong>Salmon domain ontology (shared domain model)</strong>: <a href="https://github.com/salmon-data-mobilization/salmon-domain-ontology" target="_blank" rel="noopener noreferrer">github.com/salmon-data-mobilization/salmon-domain-ontology</a></li>
+          <li><strong>Salmon domain ontology hub/docs</strong>: <a href="https://github.com/salmon-data-mobilization/salmon-ontology-hub" target="_blank" rel="noopener noreferrer">github.com/salmon-data-mobilization/salmon-ontology-hub</a></li>
+          <li><strong>Salmon Data Package (SDP) specification</strong>: <a href="https://github.com/dfo-pacific-science/smn-data-pkg" target="_blank" rel="noopener noreferrer">github.com/dfo-pacific-science/smn-data-pkg</a></li>
+          <li><strong><code>metasalmon</code> R package</strong>: <a href="https://github.com/dfo-pacific-science/metasalmon" target="_blank" rel="noopener noreferrer">github.com/dfo-pacific-science/metasalmon</a></li>
+          <li><strong>Custom Salmon Data Standardizer GPT app</strong>: <a href="https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer" target="_blank" rel="noopener noreferrer">chatgpt.com/g/.../salmon-data-standardizer</a></li>
+        </ul>
+      </div>
+
+      <h2>How the system works together</h2>
+      <div class="panel">
+        <ol>
+          <li><strong>Shared domain semantics</strong> live in <code>salmon-domain-ontology</code>.</li>
+          <li><strong>DFO-specific semantics</strong> live in <code>dfo-salmon-ontology</code>.</li>
+          <li><strong>Data exchange structure</strong> is defined by the SDP spec (<code>smn-data-pkg</code>).</li>
+          <li><strong>R-based validation and transformation</strong> are handled by <code>metasalmon</code>.</li>
+          <li><strong>AI-assisted standardization</strong> is accelerated by the custom Salmon Data Standardizer GPT app.</li>
+        </ol>
+      </div>
+
+      <h2>Quick how-to</h2>
+      <div class="panel">
+        <h3>1) Start with ontology alignment</h3>
+        <ul>
+          <li>Identify dataset concepts, entities, and relationships.</li>
+          <li>Reuse shared terms from <code>salmon-domain-ontology</code> where possible.</li>
+          <li>Use DFO terms from <code>dfo-salmon-ontology</code> for policy/operational context.</li>
+        </ul>
+
+        <h3>2) Use the Salmon Data Standardizer GPT app</h3>
+        <ul>
+          <li>Provide dataset context (columns, units, source notes, known constraints).</li>
+          <li>Ask for SDP-aligned field mapping suggestions and ontology term candidates.</li>
+          <li>Use the generated plan as a draft, then review it before final packaging.</li>
+        </ul>
+
+        <h3>3) Build an SDP-compliant package</h3>
+        <ul>
+          <li>Follow the specification in <code>smn-data-pkg</code>.</li>
+          <li>Create package metadata and required data tables.</li>
+          <li>Apply reviewed mappings from the GPT-assisted standardization step.</li>
+        </ul>
+
+        <h3>4) Validate with <code>metasalmon</code></h3>
+        <ul>
+          <li>Inspect and validate structure + content in R.</li>
+          <li>Fix schema and semantic issues before sharing or publishing.</li>
+        </ul>
+
+        <h3>5) Integrate downstream</h3>
+        <ul>
+          <li>Share valid SDPs across teams/systems.</li>
+          <li>Leverage ontology mappings to maintain interoperability for analytics and apps.</li>
+        </ul>
+      </div>
+
+      <p class="footer">
+        The GPT app is an accelerator, not the source of truth. Canonical standards remain the ontology repos and SDP specification.
+      </p>
+    </main>
+  </body>
+</html>
