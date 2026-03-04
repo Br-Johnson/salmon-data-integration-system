@@ -1,0 +1,14 @@
+C1	Interoperable salmon data sharing is constrained by heterogeneous schemas, inconsistent field semantics, and uneven packaging practices across programs.
+C2	A coordinated standards workflow can reduce friction between data creation and data reuse.
+C3	A layered ontology approach (shared domain + organization-specific operational layer) supports interoperability while preserving context-specific precision.
+C4	Formal data packaging standards improve machine-actionable exchange and reproducible reuse.
+C5	Validation gates should include structural, semantic, and operational controls before release.
+C6	AI-assisted mapping can accelerate harmonization when expert review is mandatory.
+C7	Human-in-the-loop governance is necessary for policy-sensitive and ambiguous semantic mapping decisions.
+C8	Explicit mapping artifacts improve traceability between source fields, ontology terms, and package outputs.
+C9	Version-pinned standards references and toolchain metadata improve reproducibility.
+C10	SDIS can reduce repeated one-off integration work across programs.
+C11	SDIS architecture is suitable for cross-program and inter-agency salmon data exchange.
+C12	The contribution of SDIS is infrastructural and methodological rather than hypothesis-testing.
+C13	CARE-aligned governance considerations should be addressed alongside FAIR interoperability goals in relevant contexts.
+C14	Upstream data quality remains a limiting factor even with strong standardization and validation workflows.

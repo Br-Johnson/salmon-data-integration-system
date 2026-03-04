@@ -1,0 +1,84 @@
+You are conducting a rigorous literature and editorial research run to strengthen a manuscript intended for Nature Scientific Data.
+
+## Mission
+
+Use the uploaded files as primary context and produce an evidence-backed research package that can be used to revise the manuscript into a submission-ready **Scientific Data Article** (not Data Descriptor).
+
+## Uploaded context you must use
+
+1) current manuscript draft
+2) deep research context pack
+3) claims inventory (if provided)
+
+## Key framing
+
+- The paper describes a **novel integration workflow architecture** for salmon data sharing and reuse, combining ontologies, data packaging standards, validation tooling, and AI-assisted (human-supervised) mapping support.
+- This is an **infrastructure/standards/workflow** paper.
+- Do not reframe as a single dataset Data Descriptor unless evidence strongly indicates that is required.
+
+## Core tasks
+
+### Task 1 — Journal-fit validation
+
+- Confirm and justify whether Scientific Data **Article** format is appropriate for this manuscript.
+- Provide 6–10 recent comparator papers in Scientific Data (or closely adjacent journals if needed) that discuss standards, ontologies, workflows, repositories, or data-sharing infrastructure.
+- For each comparator: state article type, structural pattern, and relevance.
+
+### Task 2 — Evidence acquisition by section
+
+For each manuscript section (Introduction, architecture, workflow, methods/controls, reuse pathways, limitations, discussion):
+
+- Identify missing concepts and missing citations.
+- Provide high-confidence references with DOI/PMID/arXiv where available.
+- Explain exactly what claim each citation supports.
+
+### Task 3 — Claim-risk audit
+
+- Detect overstatement, unsupported claims, ambiguous language, and claims likely to trigger reviewer pushback.
+- Propose revised wording for each risky claim.
+- Tie each revision to explicit sources.
+
+### Task 4 — Responsible AI language
+
+- Provide citation-backed language for AI-assisted mapping that is accurate and conservative.
+- Include known risks/failure modes and governance controls.
+- Preserve strong human-in-the-loop accountability.
+
+### Task 5 — FAIR/CARE and governance strengthening
+
+- Recommend precise wording for FAIR-aligned interoperability claims.
+- Recommend concise treatment of CARE-aligned considerations and Indigenous data governance sensitivity where relevant.
+
+### Task 6 — Revision-ready output package
+
+Produce:
+- revised abstract (journal-appropriate tone)
+- revised intro opening paragraph
+- revised limitations paragraph
+- revised discussion closing paragraph
+- section-level insertion map (where each new citation/edit should go)
+
+## Evidence and citation contract (mandatory)
+
+For every major recommendation:
+1. include at least one citation with DOI/PMID/arXiv or stable URL,
+2. include one short direct quote (<=25 words) or precise paraphrase with location,
+3. state confidence level (high/medium/low),
+4. mark uncertainties explicitly.
+
+Do not fabricate citations. If evidence is weak, say so.
+
+## Output format
+
+Return the response using these headings:
+
+1. Scientific Data fit assessment
+2. Comparator paper set
+3. Section-by-section evidence gaps and citations
+4. Claim-risk audit and revised wording
+5. FAIR/CARE and governance recommendations
+6. Revision-ready text blocks
+7. Priority action plan (top 10 edits)
+8. Reference list (with identifiers)
+
+Focus on depth, technical soundness, and editability for immediate manuscript revision.
