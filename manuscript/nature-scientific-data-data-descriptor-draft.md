@@ -1,4 +1,7 @@
-# Scientific Data article draft
+# Scientific Data article draft (superseded)
+
+> Superseded by: `manuscript/scientific-data-article-manuscript.md`
+
 
 **Working status:** Draft v0.2 (refactored to the **Scientific Data “Article”** format)
 
