@@ -171,12 +171,12 @@ No new standalone software package is introduced in this manuscript. Reproducibi
 15. Sandve, G. K., Nekrutenko, A., Taylor, J. & Hovig, E. Ten Simple Rules for Reproducible Computational Research. **PLoS Comput. Biol.** **9**, e1003285 (2013). https://doi.org/10.1371/journal.pcbi.1003285
 16. Carroll, S. R. *et al.* The CARE Principles for Indigenous Data Governance. **Data Sci. J.** **19**, 43 (2020). https://doi.org/10.5334/dsj-2020-043
 17. Carroll, S. R. *et al.* Operationalizing the CARE and FAIR Principles for Indigenous data futures. **Sci. Data** **8**, 108 (2021). https://doi.org/10.1038/s41597-021-00892-0
-18. Gustafsson, O. J. R. *et al.* WorkflowHub: a registry for computational workflows. **Sci. Data** **12**, 465 (2025). https://doi.org/10.1038/s41597-025-04786-3
-19. Schwantes, C. J. *et al.* A minimum data standard for wildlife disease research and surveillance. **Sci. Data** **12**, 940 (2025). https://doi.org/10.1038/s41597-025-05332-x
-20. Köhler, C. A. *et al.* Improving data sharing and knowledge transfer via the Neuroelectrophysiology Analysis Ontology (NEAO). **Sci. Data** **12**, 811 (2025). https://doi.org/10.1038/s41597-025-05213-3
-21. Magland, J. F. *et al.* Facilitating analysis of open neurophysiology data on the DANDI Archive using large language model tools. **Sci. Data** **12**, 1384 (2025). https://doi.org/10.1038/s41597-025-06285-x
+18. Gustafsson, O. J. R. *et al.* WorkflowHub: a registry for computational workflows. **Sci. Data** **12**, 837 (2025). https://doi.org/10.1038/s41597-025-04786-3
+19. Schwantes, C. J. *et al.* A minimum data standard for wildlife disease research and surveillance. **Sci. Data** **12**, 1054 (2025). https://doi.org/10.1038/s41597-025-05332-x
+20. Köhler, C. A. *et al.* Improving data sharing and knowledge transfer via the Neuroelectrophysiology Analysis Ontology (NEAO). **Sci. Data** **12**, 907 (2025). https://doi.org/10.1038/s41597-025-05213-3
+21. Magland, J. F. *et al.* Facilitating analysis of open neurophysiology data on the DANDI Archive using large language model tools. **Sci. Data** **12**, 1988 (2025). https://doi.org/10.1038/s41597-025-06285-x
 22. Bottomly, D. *et al.* Biomedical Data Manifest: A lightweight data documentation mapping to increase transparency for AI/ML. **Sci. Data** (2026). https://doi.org/10.1038/s41597-026-06670-0
-23. Mauer, K. *et al.* Semantic alignment of the German Human Genome-Phenome Archive metadata model in Europe’s genomics field. **Sci. Data** **13**, 292 (2026). https://doi.org/10.1038/s41597-026-06575-y
+23. Mauer, K. *et al.* Semantic alignment of the German Human Genome-Phenome Archive metadata model in Europe’s genomics field. **Sci. Data** **13**, 242 (2026). https://doi.org/10.1038/s41597-026-06575-y
 
 ## Author Contributions
 
