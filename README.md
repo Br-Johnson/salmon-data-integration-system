@@ -2,6 +2,12 @@
 
 This repository documents how the salmon ontology + data package tooling works together as one integration system.
 
+## Start here (overview + demo)
+
+- **System overview page**: https://br-johnson.github.io/salmon-data-integration-system/
+- **Overview video (YouTube)**: https://youtu.be/B0Zqac49zng?si=VmOjbfMDMd2xW9fH
+- **Source repository**: https://github.com/Br-Johnson/salmon-data-integration-system
+
 ## Core repositories and tools
 
 - **DFO salmon ontology**: https://github.com/dfo-pacific-science/dfo-salmon-ontology
@@ -9,7 +15,7 @@ This repository documents how the salmon ontology + data package tooling works t
 - **Salmon domain ontology hub/docs**: https://github.com/salmon-data-mobilization/salmon-ontology-hub
 - **Salmon Data Package (SDP) specification**: https://github.com/dfo-pacific-science/smn-data-pkg
 - **`metasalmon` R package**: https://github.com/dfo-pacific-science/metasalmon
-- **Custom Salmon Data Standardizer GPT app**: https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer
+- **Salmon Data GPT app**: https://chatgpt.com/g/g-69375eab4f608191863e8c23313a6f9f-salmon-data-standardizer
 
 ## How the system fits together
 
@@ -19,9 +25,9 @@ Think of this as a layered workflow:
 2. **DFO-specific policy/operational semantics** live in `dfo-salmon-ontology`.
 3. **Data exchange format** is defined by the SDP spec (`smn-data-pkg`).
 4. **Operational data tooling in R** is provided by `metasalmon`.
-5. **AI-assisted standardization workflow** is supported by the custom Salmon Data Standardizer GPT app.
+5. **AI-assisted standardization workflow** is supported by the Salmon Data GPT app.
 
-In short: ontology layers define meaning, SDP defines structure, `metasalmon` handles validation/transformation in R, and the custom GPT app helps people standardize incoming datasets into that workflow faster.
+In short: ontology layers define meaning, SDP defines structure, `metasalmon` handles validation/transformation in R, and the Salmon Data GPT app helps people standardize incoming datasets into that workflow faster.
 
 ## Quick how-to
 
@@ -31,9 +37,9 @@ In short: ontology layers define meaning, SDP defines structure, `metasalmon` ha
 - Reuse shared terms from `salmon-domain-ontology` where possible.
 - Use DFO terms from `dfo-salmon-ontology` for DFO-specific context.
 
-### 2) Use the Salmon Data Standardizer GPT app to prepare data
+### 2) Use the Salmon Data GPT app to prepare data
 
-- Open the custom GPT app and provide your dataset context (table structure, field meanings, units, source notes).
+- Open the GPT app and provide your dataset context (table structure, field meanings, units, source notes).
 - Ask it to propose SDP-aligned field mappings and ontology term candidates.
 - Use its output to produce a draft standardization plan/checklist before packaging.
 
